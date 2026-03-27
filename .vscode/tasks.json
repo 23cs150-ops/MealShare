@@ -78,6 +78,45 @@
 			],
 			"isBackground": false,
 			"group": "build"
+		},
+		{
+			"label": "dev: backend",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--prefix",
+				"backend"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "dev: backend",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--prefix",
+				"backend"
+			],
+			"isBackground": false,
+			"group": "build"
+		},
+		{
+			"label": "dev: backend",
+			"type": "shell",
+			"command": "npm",
+			"args": [
+				"run",
+				"dev",
+				"--prefix",
+				"backend"
+			],
+			"isBackground": false,
+			"group": "build"
 		}
 	]
 }

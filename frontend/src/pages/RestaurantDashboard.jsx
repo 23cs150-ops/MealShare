@@ -100,16 +100,24 @@ const RestaurantDashboard = () => {
       <div className="card" style={{ marginTop: 16 }}>
         <h3>Add Food</h3>
         <form onSubmit={handleCreate}>
-          <div className="flex" style={{ flexWrap: 'wrap' }}>
-            <input className="input" name="title" placeholder="Title" value={form.title} onChange={handleChange} />
-            <input className="input" name="quantity" placeholder="Quantity" value={form.quantity} onChange={handleChange} />
-          </div>
-          <div className="flex" style={{ flexWrap: 'wrap' }}>
-            <input className="input" type="datetime-local" name="pickupStartTime" value={form.pickupStartTime} onChange={handleChange} />
-            <input className="input" type="datetime-local" name="pickupEndTime" value={form.pickupEndTime} onChange={handleChange} />
-            <input className="input" type="datetime-local" name="expiryTime" value={form.expiryTime} onChange={handleChange} />
-          </div>
-          <input className="input" name="location" placeholder="Pickup Location" value={form.location} onChange={handleChange} />
+          <label style={{ display: 'block', fontSize: 13, color: '#475569', marginBottom: 4 }}>Title</label>
+          <input className="input" name="title" placeholder="e.g., Veg Curry Trays" value={form.title} onChange={handleChange} />
+
+          <label style={{ display: 'block', fontSize: 13, color: '#475569', marginBottom: 4 }}>Quantity</label>
+          <input className="input" name="quantity" placeholder="e.g., 10 portions" value={form.quantity} onChange={handleChange} />
+
+          <label style={{ display: 'block', fontSize: 13, color: '#475569', marginBottom: 4 }}>Pickup start</label>
+          <input className="input" type="datetime-local" name="pickupStartTime" value={form.pickupStartTime} onChange={handleChange} />
+
+          <label style={{ display: 'block', fontSize: 13, color: '#475569', marginBottom: 4 }}>Pickup end</label>
+          <input className="input" type="datetime-local" name="pickupEndTime" value={form.pickupEndTime} onChange={handleChange} />
+
+          <label style={{ display: 'block', fontSize: 13, color: '#475569', marginBottom: 4 }}>Expiry</label>
+          <input className="input" type="datetime-local" name="expiryTime" value={form.expiryTime} onChange={handleChange} />
+
+          <label style={{ display: 'block', fontSize: 13, color: '#475569', marginBottom: 4 }}>Pickup location</label>
+          <input className="input" name="location" placeholder="Address or pickup point" value={form.location} onChange={handleChange} />
+
           <button className="button" type="submit" disabled={loading}>{loading ? 'Saving...' : 'Post Food'}</button>
         </form>
       </div>

@@ -5,7 +5,7 @@ const connectDB = async () => {
   if (!uri) {
     throw new Error('MONGO_URI is not set');
   }
-  await mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+  await mongoose.connect(uri);
   console.log('MongoDB connected');
 };
 

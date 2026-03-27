@@ -38,22 +38,38 @@ const NGODashboard = () => {
   return (
     <div className="container">
       <h2>NGO Dashboard</h2>
+      <p style={{ marginTop: -8, color: '#475569' }}>Review available food and send a request during the pickup window.</p>
       {error && <div className="alert">{error}</div>}
       {message && <div className="success">{message}</div>}
       <div className="list" style={{ marginTop: 12 }}>
         {foods.map((food) => (
           <div className="card" key={food._id}>
-            <div className="flex-between">
+            <div className="flex-between" style={{ marginBottom: 6 }}>
               <div>
                 <div style={{ fontWeight: 700 }}>{food.title}</div>
                 <div style={{ fontSize: 13, color: '#475569' }}>{food.quantity}</div>
               </div>
+              <span className="badge" style={{ background: '#16a34a', color: '#fff' }}>Available</span>
             </div>
-            <div style={{ fontSize: 13, marginTop: 6 }}>Pickup: {new Date(food.pickupStartTime).toLocaleString()} - {new Date(food.pickupEndTime).toLocaleString()}</div>
-            <div style={{ fontSize: 13 }}>Expiry: {new Date(food.expiryTime).toLocaleString()}</div>
-            <div style={{ fontSize: 13, marginTop: 4 }}>Location: {food.location}</div>
-            <button className="button" style={{ marginTop: 8 }} disabled={loading} onClick={() => requestFood(food._id)}>
-              {loading ? 'Processing...' : 'Request'}
+            <div style={{ fontSize: 13, marginTop: 6 }}>
+              <strong>Pickup window:</strong> {new Date(food.pickupStartTime).toLocaleString()} — {new Date(food.pickupEndTime).toLocaleString()}
+            </div>
+            <div style={{ fontSize: 13, marginTop: 4 }}>
+              <strong>Expiry:</strong> {new Date(food.expiryTime).toLocaleString()}
+            </div>
+            <div style={{ fontSize: 13, marginTop: 4 }}>
+              <strong>Location:</strong> {food.location}
+            </div>
+            <div style={{ fontSize: 13, marginTop: 8, color: '#475569' }}>
+              You can only request if the current time is within the pickup window.
+            </div>
+            <button
+              className="button"
+              style={{ marginTop: 10 }}
+              disabled={loading}
+              onClick={() => requestFood(food._id)}
+            >
+              {loading ? 'Processing...' : 'Request this food'}
             </button>
           </div>
         ))}

@@ -31,16 +31,18 @@ app.use('/api/stats', statsRoutes);
 const PORT = process.env.PORT || 5000;
 
 const ensureDefaultUsers = async () => {
-  const email = 'test@restaurant.com';
-  const existing = await User.findOne({ email });
-  if (existing) return;
-  await User.create({
-    name: 'Test Restaurant',
-    email,
-    password: '123456',
-    role: 'restaurant'
-  });
-  console.log('Seeded default restaurant user: test@restaurant.com / 123456');
+  const seeds = [
+    { name: 'Test Restaurant', email: 'test@restaurant.com', password: '123456', role: 'restaurant' },
+    { name: 'NGO One', email: 'NGO1@gmail.com', password: 'NGO1', role: 'ngo' }
+  ];
+
+  for (const seed of seeds) {
+    const existing = await User.findOne({ email: seed.email });
+    if (!existing) {
+      await User.create(seed);
+      console.log(`Seeded user: ${seed.email} / ${seed.password} (${seed.role})`);
+    }
+  }
 };
 
 const startServer = async () => {

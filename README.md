@@ -10,63 +10,61 @@ The system manages the complete lifecycle of food donations, including pickup ti
 Large amounts of food are wasted every day by restaurants and events, while many people struggle with hunger.
 This platform bridges that gap by enabling efficient and safe redistribution of surplus food.
 
-🚀 Features
-👨‍🍳 Restaurant Dashboard
-      Add food donations
-      View posted food items
-      Track request status
-    View statistics:
-      Total Food Posted
-      Total Food Collected
-      Total Requested
-      Total Expired
-🤝 NGO Dashboard
-      View available food donations
-      Request food for collection
-      Track request status
-⚙️ System Features
-      Role-based authentication (Restaurant / NGO)
-      Food expiry validation
-      Pickup time window management
-      Request approval workflow
-      Automatic expiry handling
+## 🚀 Features
 
+### 👨‍🍳 Restaurant Dashboard
+- Add food donations  
+- View posted food items  
+- Track request status  
+- View statistics:
+  - Total Food Posted  
+  - Total Food Collected  
+  - Total Requested  
+  - Total Expired  
 
+### 🤝 NGO Dashboard
+- View available food donations  
+- Request food for collection  
+- Track request status  
 
-🛠️ Tech Stack
+### ⚙️ System Features
+- Role-based authentication (Restaurant / NGO)  
+- Food expiry validation  
+- Pickup time window management  
+- Request approval workflow  
+- Automatic expiry handling  
 
-Frontend:
-  React.js
-  Vite
-  React Router
-  Axios
+---
 
-Backend:
-  Node.js
-  Express.js
-  MongoDB (Mongoose)
-  JWT Authentication (JSON Web Token)
+## 🛠️ Tech Stack
 
-📦 Prerequisites
-    Node.js (v18 or above)
-    npm
-    MongoDB (Atlas or Local)
+### Frontend
+- React.js  
+- Vite  
+- React Router  
+- Axios  
 
-⚙️ Setup Instructions:
+### Backend
+- Node.js  
+- Express.js  
+- MongoDB (Mongoose)  
+- JWT Authentication  
 
-   1️⃣ Install Dependencies
-            npm install --prefix backend
-            npm install --prefix frontend
-   2️⃣ Configure Environment Variables
-         Backend (backend/.env)
-            MONGO_URI=your_mongodb_connection_string
-            JWT_SECRET=your_secret_key
-            PORT=5000
-         Frontend (frontend/.env)
-            VITE_API_BASE=http://localhost:5000
-   3️⃣ Run Development Servers
-          npm run dev --prefix backend
-          npm run dev --prefix frontend
+---
+
+## 📦 Prerequisites
+- Node.js (v18 or above)  
+- npm  
+- MongoDB (Atlas or Local)  
+
+---
+
+## ⚙️ Setup Instructions
+
+### 1️⃣ Install Dependencies
+
+  npm install --prefix backend
+  npm install --prefix frontend
 
 🌐 Access
         Frontend: http://localhost:5173
@@ -91,13 +89,13 @@ Backend:
 📜 Scripts
 
   Backend
-     npm run dev --prefix backend
-     npm start --prefix backend
+           npm run dev --prefix backend
+           npm start --prefix backend
 
   Frontend
-    npm run dev --prefix frontend
-    npm run build --prefix frontend
-    npm run preview --prefix frontend
+                npm run dev --prefix frontend
+                npm run build --prefix frontend
+                npm run preview --prefix frontend
 
     
 🔄 Food Lifecycle

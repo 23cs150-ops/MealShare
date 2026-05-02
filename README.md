@@ -1,130 +1,201 @@
-🍽️ Food Redistribution Platform (MERN Stack)
-📌 Overview
+# MealShare - Food Redistribution Platform
 
-The Food Redistribution Platform is a full-stack web application designed to reduce food waste by connecting restaurants with NGOs. Restaurants can post surplus food, and NGOs can request and collect it for redistribution to people in need.
+MealShare is a MERN-style web platform that reduces food waste by connecting restaurants with NGOs.
+Restaurants post surplus food, NGOs request pickups, and the system tracks donation status from creation to collection or expiry.
 
-The system manages the complete lifecycle of food donations, including pickup time windows, expiry validation, and request approval.
+## Overview
 
-🎯 Problem Statement
+Large quantities of good food are discarded daily while many communities face food insecurity.
+MealShare addresses this by enabling safe, trackable redistribution of surplus food with role-based access and approval flow.
 
-Large amounts of food are wasted every day by restaurants and events, while many people struggle with hunger.
-This platform bridges that gap by enabling efficient and safe redistribution of surplus food.
+## Key Features
 
-## 🚀 Features
+### Restaurant Dashboard
+- Create food donation posts
+- View and manage posted food items
+- Review incoming NGO requests
+- Track donation metrics:
+  - total posted
+  - total requested
+  - total collected
+  - total expired
 
-### 👨‍🍳 Restaurant Dashboard
-- Add food donations  
-- View posted food items  
-- Track request status  
-- View statistics:
-  - Total Food Posted  
-  - Total Food Collected  
-  - Total Requested  
-  - Total Expired  
+### NGO Dashboard
+- Browse available food donations
+- Request food pickups
+- Track request and approval status
 
-### 🤝 NGO Dashboard
-- View available food donations  
-- Request food for collection  
-- Track request status  
+### System Features
+- Role-based authentication (Restaurant / NGO)
+- JWT-protected APIs
+- Food expiry validation
+- Pickup time window tracking
+- Request approval workflow
 
-### ⚙️ System Features
-- Role-based authentication (Restaurant / NGO)  
-- Food expiry validation  
-- Pickup time window management  
-- Request approval workflow  
-- Automatic expiry handling  
-
----
-
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
-- React.js  
-- Vite  
-- React Router  
-- Axios  
+- React
+- Vite
+- React Router
+- Axios
 
 ### Backend
-- Node.js  
-- Express.js  
-- MongoDB (Mongoose)  
-- JWT Authentication  
+- Node.js
+- Express
+- MongoDB with Mongoose
+- JWT Authentication
 
----
+## Project Architecture
 
-## 📦 Prerequisites
-- Node.js (v18 or above)  
-- npm  
-- MongoDB (Atlas or Local)  
+```text
+MealShare/
+|-- backend/
+|   |-- server.js                  # Express app entry point
+|   |-- config/
+|   |   `-- db.js                  # MongoDB connection setup
+|   |-- controllers/
+|   |   |-- authController.js      # Register/login logic
+|   |   |-- foodController.js      # Food CRUD and status logic
+|   |   |-- requestController.js   # NGO request workflow
+|   |   `-- statsController.js     # Dashboard analytics
+|   |-- middleware/
+|   |   `-- auth.js                # JWT verification and role checks
+|   |-- models/
+|   |   |-- User.js                # User schema (Restaurant/NGO)
+|   |   |-- Food.js                # Food donation schema
+|   |   `-- Request.js             # Request schema and lifecycle
+|   `-- routes/
+|       |-- authRoutes.js          # /api/auth
+|       |-- foodRoutes.js          # /api/food
+|       |-- requestRoutes.js       # /api/request
+|       `-- statsRoutes.js         # /api/stats
+|-- frontend/
+|   |-- src/
+|   |   |-- main.jsx               # App bootstrap
+|   |   |-- App.jsx                # Route container
+|   |   |-- index.css              # Global styles
+|   |   |-- components/
+|   |   |   |-- Navbar.jsx
+|   |   |   `-- ProtectedRoute.jsx # Route guard by auth
+|   |   |-- context/
+|   |   |   `-- AuthContext.jsx    # Global auth state
+|   |   |-- pages/
+|   |   |   |-- LandingPage.jsx
+|   |   |   |-- Login.jsx
+|   |   |   |-- Register.jsx
+|   |   |   |-- RestaurantDashboard.jsx
+|   |   |   |-- NGODashboard.jsx
+|   |   |   `-- MyRequests.jsx
+|   |   `-- services/
+|   |       |-- api.js             # Axios instance/base config
+|   |       `-- auth.js            # Auth API helpers
+|   |-- index.html
+|   `-- vite.config.js
+|-- screenshots/
+|   |-- login.png
+|   |-- restaurant.png
+|   `-- ngo.png
+`-- README.md
+```
 
----
+### Request-Response Flow
 
-## ⚙️ Setup Instructions
+1. User authenticates via frontend pages.
+2. Frontend sends credentials/token-based requests to backend APIs.
+3. Backend middleware validates JWT and role permissions.
+4. Controllers apply business logic and query MongoDB via models.
+5. Frontend dashboards refresh with latest food, request, and stats data.
 
-### 1️⃣ Install Dependencies
+## API Modules
 
-  npm install --prefix backend
-  npm install --prefix frontend
+| Module | Base Endpoint | Purpose |
+| --- | --- | --- |
+| Auth | `/api/auth` | Register, login, identity handling |
+| Food | `/api/food` | Food listing creation, updates, retrieval |
+| Request | `/api/request` | NGO request creation and status transitions |
+| Stats | `/api/stats` | Dashboard summaries and counts |
 
-🌐 Access
-        Frontend: http://localhost:5173
-        Backend API: http://localhost:5000
-        
-🔑 Test Users 
+## Prerequisites
 
-  | Role       | Email                                             | Password |
-  | ---------- | ------------------------------------------------- | -------- |
-  | Restaurant | [test@restaurant.com](mailto:test@restaurant.com) | 123456   |
-  | NGO        | [NGO1@gmail.com](mailto:NGO1@gmail.com)           | NGO1     |
+- Node.js 18+
+- npm
+- MongoDB (Atlas or local instance)
 
-📡 API Routes
+## Local Setup
 
-   | Module  | Endpoint                                |
-   | ------- | --------------------------------------- |
-   | Auth    | `/api/auth/register`, `/api/auth/login` |
-   | Food    | `/api/food`                             |
-   | Request | `/api/request`                          |
-   | Stats   | `/api/stats`                            |
+1. Install dependencies:
 
-📜 Scripts
+```bash
+npm install --prefix backend
+npm install --prefix frontend
+```
 
-  Backend
-           npm run dev --prefix backend
-           npm start --prefix backend
+2. Configure environment variables in backend and frontend as needed.
 
-  Frontend
-                npm run dev --prefix frontend
-                npm run build --prefix frontend
-                npm run preview --prefix frontend
+3. Run development servers (two terminals):
 
-    
-🔄 Food Lifecycle
-      Restaurant posts food
-      Food becomes available
-      NGO requests food
-      Restaurant approves request
-      Food status → collected
-      If expired → expired
-🔮 Future Improvements
-      Real-time notifications
-      Mobile application
-      GPS-based tracking
-      Analytics dashboard
+```bash
+npm run dev --prefix backend
+npm run dev --prefix frontend
+```
 
-## 📸 Screenshots
+4. Open:
+- Frontend: `http://localhost:5173`
+- Backend: `http://localhost:5000`
 
-### 🔐 Login Page
+## Scripts
+
+### Backend
+
+```bash
+npm run dev --prefix backend
+npm start --prefix backend
+```
+
+### Frontend
+
+```bash
+npm run dev --prefix frontend
+npm run build --prefix frontend
+npm run preview --prefix frontend
+```
+
+## Food Lifecycle
+
+1. Restaurant posts food
+2. Food appears as available
+3. NGO submits request
+4. Restaurant approves/rejects
+5. Approved request becomes collected after pickup
+6. Unclaimed items pass to expired state
+
+## Test Users
+
+| Role | Email | Password |
+| --- | --- | --- |
+| Restaurant | test@restaurant.com | 123456 |
+| NGO | NGO1@gmail.com | NGO1 |
+
+## Screenshots
+
+### Login Page
 ![Login Page](./screenshots/login.png)
 
-### 👨‍🍳 Restaurant Dashboard
+### Restaurant Dashboard
 ![Restaurant Dashboard](./screenshots/restaurant.png)
 
-### 🤝 NGO Dashboard
+### NGO Dashboard
 ![NGO Dashboard](./screenshots/ngo.png)
 
-### 🍲 Food Posting Form
-![Food Form](./screenshots/food-form.png)
-👨‍💻 Author
+## Future Improvements
 
-   Sujal M R
-   Computer Science Engineering Student
+- Real-time notifications
+- Mobile application
+- GPS-enabled pickup tracking
+- Advanced analytics dashboard
+
+## Author
+
+Sujal M R  
+Computer Science Engineering Student
